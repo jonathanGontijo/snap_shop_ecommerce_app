@@ -105,7 +105,9 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                       children: [
                         const Text("Already have an account? "),
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/login');
+                          },
                           child: const Text(
                             'Login',
                             style: TextStyle(

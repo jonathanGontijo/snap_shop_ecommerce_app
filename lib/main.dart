@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:snap_shop_ecommerce_app/views/auth/create_account_page.dart';
+import 'package:snap_shop_ecommerce_app/views/auth/login_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,9 +19,14 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Snap & Shop eCommerce App',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        fontFamily: 'Couture',
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
       ),
-      home: CreateAccountPage(),
+      routes: {
+        '/login': (context) => const LoginPage(),
+        '/create-account': (context) => const CreateAccountPage(),
+      },
+      home: LoginPage(),
       /* home: const Scaffold(
         body: Center(
           child: Text(
