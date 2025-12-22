@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "135170662309",
+    "firebase_url": "https://zoom-clone-da73e-default-rtdb.firebaseio.com",
+    "project_id": "zoom-clone-da73e",
+    "storage_bucket": "zoom-clone-da73e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:135170662309:android:215f36d171f5e87828d24c",
+        "android_client_info": {
+          "package_name": "com.example.snap_shop_ecommerce_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "135170662309-rqlev3m090qsc4rbv9lqfuljggmri8hk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZ1F_nmNJJ4CqaOXbhBgmLaCQlLU-MpYI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "135170662309-rqlev3m090qsc4rbv9lqfuljggmri8hk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "135170662309-4j1ddaier3lu5vig5vq81vgclttl7sq2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.realidadeaumentada"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
