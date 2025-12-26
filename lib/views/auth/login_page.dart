@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:snap_shop_ecommerce_app/viewModel/auth_view_model.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -8,9 +9,11 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final formGlobalView = GlobalKey<FormState>();
+  final formGlobalKey = GlobalKey<FormState>();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
+  AuthViewModel authViewModel = AuthViewModel();
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +22,7 @@ class _LoginPageState extends State<LoginPage> {
       body: Center(
         child: SingleChildScrollView(
           child: Form(
-            key: formGlobalView,
+            key: formGlobalKey,
             child: Column(
               children: [
                 SizedBox(height: 60),
@@ -80,7 +83,33 @@ class _LoginPageState extends State<LoginPage> {
                         width: MediaQuery.of(context).size.width * 0.9,
                         height: 50,
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            if (formGlobalKey.currentState!.validate()) {
+                              authViewModel
+                                  .loginWithEmailAndPassword(
+                                    emailController.text.trim(),
+                                    passwordController.text.trim(),
+                                  )
+                                  .then((status) {
+                                    if (status == "Login Successful") {
+                                      ScaffoldMessenger.of(
+                                        context,
+                                      ).showSnackBar(
+                                        const SnackBar(
+                                          content: Text('Login successful!'),
+                                        ),
+                                      );
+                                      Navigator.pushNamed(context, '/home');
+                                    } else {
+                                      ScaffoldMessenger.of(
+                                        context,
+                                      ).showSnackBar(
+                                        SnackBar(content: Text(status)),
+                                      );
+                                    }
+                                  });
+                            }
+                          },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.green,
                             foregroundColor: Colors.white,

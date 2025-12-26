@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:snap_shop_ecommerce_app/viewModel/auth_view_model.dart';
 
 class CreateAccountPage extends StatefulWidget {
   const CreateAccountPage({super.key});
@@ -8,10 +9,12 @@ class CreateAccountPage extends StatefulWidget {
 }
 
 class _CreateAccountPageState extends State<CreateAccountPage> {
-  final formGlobalView = GlobalKey<FormState>();
+  final formGlobalKey = GlobalKey<FormState>();
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
+  AuthViewModel authViewModel = AuthViewModel();
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +22,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
       backgroundColor: Colors.grey.shade50,
       body: SingleChildScrollView(
         child: Form(
-          key: formGlobalView,
+          key: formGlobalKey,
           child: Column(
             children: [
               SizedBox(height: 60),
@@ -91,7 +94,36 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                       width: MediaQuery.of(context).size.width * 0.9,
                       height: 50,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          if (formGlobalKey.currentState!.validate()) {
+                            authViewModel
+                                .createUserAccountWithEmailAndPassword(
+                                  nameController.text.trim(),
+                                  emailController.text.trim(),
+                                  passwordController.text.trim(),
+                                )
+                                .then((status) {
+                                  if (status == "SignUp Successful") {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                        content: Text(
+                                          'Account created successfully!',
+                                        ),
+                                      ),
+                                    );
+                                    authViewModel.storeUserData(
+                                      name: nameController.text.trim(),
+                                      userEmail: emailController.text.trim(),
+                                    );
+                                    Navigator.pushNamed(context, '/home');
+                                  } else {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(content: Text(status)),
+                                    );
+                                  }
+                                });
+                          }
+                        },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.green,
                           foregroundColor: Colors.white,
