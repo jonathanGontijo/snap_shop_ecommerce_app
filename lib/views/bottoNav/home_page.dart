@@ -19,12 +19,6 @@ class _HomePageState extends State<HomePage> {
   List NavPages = [DefaultPage(), OrderPage(), CartPage(), ProfilePage()];
 
   @override
-  void initState() {
-    super.initState();
-    Provider.of<UserProvider>(context, listen: false);
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: NavPages[chosenIndex],
