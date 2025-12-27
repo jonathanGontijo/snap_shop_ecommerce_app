@@ -34,9 +34,18 @@ class UserProvider extends ChangeNotifier {
     });
   }
 
+  declineProvider() {
+    userStreamSubscription?.cancel();
+    nameOfUser = '';
+    emailOfUser = '';
+    addressOfUser = '';
+    phoneNumberOfUser = '';
+    notifyListeners();
+  }
+
   @override
   void dispose() {
-    userStreamSubscription?.cancel();
+    declineProvider();
     super.dispose();
   }
 }

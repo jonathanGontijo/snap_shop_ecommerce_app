@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:snap_shop_ecommerce_app/provider/user_provider.dart';
 import 'package:snap_shop_ecommerce_app/views/bottoNav/navPages/cart_page.dart';
 import 'package:snap_shop_ecommerce_app/views/bottoNav/navPages/default_page.dart';
 import 'package:snap_shop_ecommerce_app/views/bottoNav/navPages/order_page.dart';
@@ -16,12 +14,12 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int chosenIndex = 0;
 
-  List NavPages = [DefaultPage(), OrderPage(), CartPage(), ProfilePage()];
+  List navPages = [DefaultPage(), OrderPage(), CartPage(), ProfilePage()];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: NavPages[chosenIndex],
+      body: navPages[chosenIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: chosenIndex,
         onTap: (index) {

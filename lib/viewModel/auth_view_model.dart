@@ -1,5 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:snap_shop_ecommerce_app/provider/user_provider.dart';
 
 class AuthViewModel {
   createUserAccountWithEmailAndPassword(
@@ -31,12 +34,18 @@ class AuthViewModel {
     }
   }
 
-  loginWithEmailAndPassword(String userEmail, String userPassword) async {
+  loginWithEmailAndPassword(
+    String userEmail,
+    String userPassword,
+    BuildContext context,
+  ) async {
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: userEmail,
         password: userPassword,
       );
+
+      Provider.of<UserProvider>(context, listen: false).getUserData();
 
       return "Login Successful";
     } on FirebaseAuthException catch (e) {

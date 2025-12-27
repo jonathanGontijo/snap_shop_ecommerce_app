@@ -89,6 +89,7 @@ class _LoginPageState extends State<LoginPage> {
                                   .loginWithEmailAndPassword(
                                     emailController.text.trim(),
                                     passwordController.text.trim(),
+                                    context,
                                   )
                                   .then((status) {
                                     if (status == "Login Successful") {
